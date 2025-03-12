@@ -2656,8 +2656,6 @@ components:
           type: boolean
         has_custom_methods_write:
           type: boolean
-        has_decompiled_code:
-          type: boolean
         has_logs:
           type: boolean
         has_methods_read:
