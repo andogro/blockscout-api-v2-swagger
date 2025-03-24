@@ -23,14 +23,24 @@ paths:
       parameters:
         - in: query
           name: q
+          description: |
+            Search query string. Can be:
+            * Token symbol or name (e.g., "USDT")
+            * Address hash (0x...)
+            * Transaction hash
+            * Block number or hash
           schema:
             type: string
             example: "USDT"
-      summary: search
+      summary: Universal blockchain entity search
+      description: |
+        Performs a unified search across multiple blockchain entity types including tokens, 
+        addresses, contracts, blocks, and transactions.
       operationId: search
       responses:
         "200":
-          description: search response
+          description: Successful search response containing matched items and pagination information.
+            Results are ordered by relevance and limited to 50 items per page.
           content:
             application/json:
               schema:
@@ -62,7 +72,11 @@ paths:
                         "transaction_hash": null,
                       }
         "400":
-          description: bad input parameter
+          description: |
+            Invalid request. This can occur if:
+            * The search query is empty or missing
+            * The query string contains invalid characters
+            * The query length exceeds the maximum limit
 
   /search/check-redirect:
     get:
